@@ -1,4 +1,9 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormGroup, AbstractControl, FormBuilder, Validators } from '@angular/forms';
+import { UserLoginModel } from './../../core/models/userlogin/userlogin.model';
+import { UserloginService } from './../../core/services/userlogin/userlogin.service';
+import { AuthService } from './../../core/services/common/auth.service';
 
 declare var $: any;
 
@@ -13,9 +18,35 @@ export class LoginComponent implements OnInit {
     private sidebarVisible: boolean;
     private nativeElement: Node;
 
-    constructor(private element: ElementRef) {
+    public form: FormGroup;
+    public loginID: AbstractControl;
+    public loginPassword: AbstractControl;
+    public submitted: boolean = false;
+    public _UserLoginModel = new UserLoginModel();
+    public auth_error;
+    public token;
+    public Invalid = false;
+    public redirToDashboard = false;
+
+    constructor(
+        private element: ElementRef,
+        fb: FormBuilder, 
+        private userloginService: UserloginService,
+        private authService: AuthService,
+        private _router: Router
+    ) {
         this.nativeElement = element.nativeElement;
         this.sidebarVisible = false;
+
+        this.authService.logout();
+        
+        this.form = fb.group({
+          'loginID': [this._UserLoginModel.loginID, Validators.compose([Validators.required, Validators.minLength(4)])],
+          'loginPassword': [this._UserLoginModel.loginPassword, Validators.compose([Validators.required, Validators.minLength(4)])],
+        });
+    
+        this.loginID = this.form.controls['loginID'];
+        this.loginPassword = this.form.controls['loginPassword'];
     }
 
     ngOnInit() {
@@ -41,6 +72,38 @@ export class LoginComponent implements OnInit {
             this.toggleButton.classList.remove('toggled');
             this.sidebarVisible = false;
             body.classList.remove('nav-open');
+        }
+    }
+
+    onSubmit(values: Object): void {
+        this.submitted = true;
+        if (this.form.valid) {
+            let postData = {
+                loginID: this._UserLoginModel.loginID,
+                loginPassword: this._UserLoginModel.loginPassword
+            }
+            console.log(postData);
+            this.userloginService
+                .login(postData)
+                .subscribe(data =>{
+                    if (data) {
+                        console.log(data);
+                        // this.Invalid = false;
+                        // data.user.password = '';
+                        // this.token = {
+                        //     username: data.username,
+                        //     user: data.user,
+                        //     token: data.token,
+                        //     role: data.user.role,
+                        //     roletype: data.user.role.roletype,
+                        //     _id: data.user._id,
+                        // };
+                        // this.authService.login(this.token);
+                        // this.form.reset();
+                        // this.submitted = false;
+                        // this._router.navigate(['/pages/admins/admin-dashboard']);
+                    }
+            });
         }
     }
 }

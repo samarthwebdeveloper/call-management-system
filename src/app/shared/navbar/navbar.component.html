@@ -56,6 +56,21 @@
                             <i class="material-icons">person</i>
                             <p class="hidden-lg hidden-md">Profile</p>
                         </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a style="cursor:pointer;">{{userName}}</a>
+                            </li>
+                            <li>
+                                <a style="cursor:pointer;">My Profile</a>
+                            </li>
+                            <li>
+                                <a style="cursor:pointer;">Settings</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a (click) ="logout()" style="cursor:pointer;">Sign Out</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="separator hidden-lg hidden-md"></li>
                 </ul>

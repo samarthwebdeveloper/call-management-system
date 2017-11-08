@@ -42,7 +42,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-sm-6 col-md-offset-4 col-sm-offset-3">
-                        <form method="#" action="#">
+                        <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
                             <div class="card card-login card-hidden">
                                 <div class="card-header text-center" data-background-color="rose">
                                     <h4 class="card-title">Login</h4>
@@ -62,14 +62,9 @@
                                     Or Be Classical
                                 </p>
                                 <div class="card-content">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">
-                                            <i class="material-icons">face</i>
-                                        </span>
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">First Name</label>
-                                            <input type="text" class="form-control">
-                                        </div>
+                                    <div class="alert alert-danger"
+                                        [hidden]="(form.get('loginID').pristine || !submitted || !Invalid)">
+                                        User Name & Password is Invalid
                                     </div>
                                     <div class="input-group">
                                         <span class="input-group-addon">
@@ -77,7 +72,7 @@
                                         </span>
                                         <div class="form-group label-floating">
                                             <label class="control-label">Email address</label>
-                                            <input type="email" class="form-control">
+                                            <input [formControl]="loginID" type="text" class="form-control" [(ngModel)]="_UserLoginModel.loginID">
                                         </div>
                                     </div>
                                     <div class="input-group">
@@ -86,12 +81,12 @@
                                         </span>
                                         <div class="form-group label-floating">
                                             <label class="control-label">Password</label>
-                                            <input type="password" class="form-control">
+                                            <input [formControl]="loginPassword" type="password" name="password" class="form-control" [(ngModel)]="_UserLoginModel.loginPassword">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="footer text-center">
-                                    <button type="submit" class="btn btn-rose btn-simple btn-wd btn-lg">Let's go</button>
+                                    <button [disabled]="!form.valid" type="submit" class="btn btn-rose btn-simple btn-wd btn-lg">Sign In</button>
                                 </div>
                             </div>
                         </form>
