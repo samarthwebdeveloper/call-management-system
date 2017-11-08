@@ -1,54 +1,52 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
 
-import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
-import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
+import { AuthLayoutComponent } from './theme/layouts/auth/auth-layout.component';
 
 export const AppRoutes: Routes = [
-    {
-      path: '',
-      redirectTo: 'dashboard',
-      pathMatch: 'full',
-    }, {
-      path: '',
-      component: AdminLayoutComponent,
-      children: [
-          {
-        path: '',
-        loadChildren: './dashboard/dashboard.module#DashboardModule'
-    }, {
+  { path: '', redirectTo: 'pages', pathMatch: 'full' },
+
+  //theme comp path start
+  {
         path: 'components',
-        loadChildren: './components/components.module#ComponentsModule'
-    }, {
+        loadChildren: './theme/components/components.module#ComponentsModule'
+    },{
         path: 'forms',
-        loadChildren: './forms/forms.module#Forms'
-    }, {
+        loadChildren: './theme/forms/forms.module#Forms'
+    },{
         path: 'tables',
-        loadChildren: './tables/tables.module#TablesModule'
-    }, {
+        loadChildren: './theme/tables/tables.module#TablesModule'
+    },{
         path: 'maps',
-        loadChildren: './maps/maps.module#MapsModule'
-    }, {
+        loadChildren: './theme/maps/maps.module#MapsModule'
+    },{
         path: 'widgets',
-        loadChildren: './widgets/widgets.module#WidgetsModule'
-    }, {
+        loadChildren: './theme/widgets/widgets.module#WidgetsModule'
+    },{
         path: 'charts',
-        loadChildren: './charts/charts.module#ChartsModule'
-    }, {
+        loadChildren: './theme/charts/charts.module#ChartsModule'
+    },{
         path: 'calendar',
-        loadChildren: './calendar/calendar.module#CalendarModule'
-    }, {
+        loadChildren: './theme/calendar/calendar.module#CalendarModule'
+    },{
         path: '',
-        loadChildren: './userpage/user.module#UserModule'
-    }, {
+        loadChildren: './theme/userpage/user.module#UserModule'
+    },{
         path: '',
-        loadChildren: './timeline/timeline.module#TimelineModule'
-    }
-  ]}, {
+        loadChildren: './theme/timeline/timeline.module#TimelineModule'
+    },
+    {
       path: '',
       component: AuthLayoutComponent,
       children: [{
         path: 'pages',
         loadChildren: './pages/pages.module#PagesModule'
       }]
-    }
+    },
+   //theme comp path End
+
+  { path: '**', redirectTo: 'pages/404' },
 ];
+
+export const routing: ModuleWithProviders = RouterModule.forRoot(AppRoutes, { useHash: true });
+
