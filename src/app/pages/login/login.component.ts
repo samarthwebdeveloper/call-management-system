@@ -78,13 +78,9 @@ export class LoginComponent implements OnInit {
     onSubmit(values: Object): void {
         this.submitted = true;
         if (this.form.valid) {
-            // let postData = {
-            //     loginID: this._UserLoginModel.loginID,
-            //     loginPassword: this._UserLoginModel.loginPassword
-            // }
             let postData = {
-                email: this._UserLoginModel.loginID,
-                password: this._UserLoginModel.loginPassword
+                loginID: this._UserLoginModel.loginID,
+                loginPassword: this._UserLoginModel.loginPassword
             }
             console.log(postData);
             this.userloginService
@@ -92,22 +88,20 @@ export class LoginComponent implements OnInit {
                 .subscribe(data =>{
                     if (data) {
                         console.log(data);
-                        // this.Invalid = false;
-                        // data.user.password = '';
-                        // this.token = {
-                        //     username: data.username,
-                        //     user: data.user,
-                        //     token: data.token,
-                        //     role: data.user.role,
-                        //     roletype: data.user.role.roletype,
-                        //     _id: data.user._id,
-                        // };
-                        // this.authService.login(this.token);
-                        // this.form.reset();
-                        // this.submitted = false;
-                        // this._router.navigate(['/pages/admins/admin-dashboard']);
                     }
             });
+
+            // let formRole = 'A';
+            // this.token = {
+            //   username: this._UserLoginModel.loginID,
+            //   token: 'ggfggththjyjyjgyhjukukkjhgrdgrdgfgfgtghtgsdfefe',
+            //   role: formRole,
+            //   _id: 'ghfhgfhyhjnuyfhrhfmyhmncb',
+            // };
+            // this.authService.login(this.token);
+            // this.form.reset();
+            // this.submitted = false;
+            // this._router.navigate(['/pages/dashboard']);
         }
     }
 }

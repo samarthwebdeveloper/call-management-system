@@ -9,9 +9,11 @@ export class Configuration {
     public headers: Headers = new Headers();
     
     constructor() {
-       this.headers.append('Content-Type', 'application/json');
-       this.headers.append('Accept', 'application/json');
-       this.Server = 'http://callmanager.sansoftek.com/';
+    //    this.headers.append('Content-Type', 'application/json');
+    //    this.headers.append('Accept', 'application/json');
+        this.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        this.headers.append('Accept', 'application/json');
+        this.Server = 'http://callmanager.sansoftek.com/';
         // if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
         //     this.Server = 'http://localhost:3001/';
         //    this.actionUrl = this.Server + 'api/';
