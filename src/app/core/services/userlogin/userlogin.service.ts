@@ -21,7 +21,9 @@ export class UserloginService {
         private _commonDataService: CommonDataService,
 ) {
 
-        this.actionUrl = configuration.Server + 'Login/';
+        // this.actionUrl = configuration.Server + 'Login/';
+        this.actionUrl = 'https://reqres.in/api/';
+        
 
         this.headers = new Headers();
         this.headers.append('Content-Type', 'application/json');
@@ -29,8 +31,9 @@ export class UserloginService {
         // this.updateProfileData();
     }
     public login = (data: any): Observable<any> => {
+        console.log(this.actionUrl + 'login');
        let toAdd = JSON.stringify(data);
-       return this.http.post(this.actionUrl + 'Login', toAdd, { headers: this.headers })
+       return this.http.post(this.actionUrl + 'posts', toAdd, { headers: this.headers })
            .map(res => <any>res.json());
     }
 

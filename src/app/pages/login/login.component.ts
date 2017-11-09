@@ -78,9 +78,13 @@ export class LoginComponent implements OnInit {
     onSubmit(values: Object): void {
         this.submitted = true;
         if (this.form.valid) {
+            // let postData = {
+            //     loginID: this._UserLoginModel.loginID,
+            //     loginPassword: this._UserLoginModel.loginPassword
+            // }
             let postData = {
-                loginID: this._UserLoginModel.loginID,
-                loginPassword: this._UserLoginModel.loginPassword
+                email: this._UserLoginModel.loginID,
+                password: this._UserLoginModel.loginPassword
             }
             console.log(postData);
             this.userloginService
