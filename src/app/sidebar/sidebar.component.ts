@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
+import { AuthService } from '../core/services/common/auth.service';
 
 declare const $: any;
 
@@ -28,87 +29,92 @@ export const ROUTES: RouteInfo[] = [
         type: 'link',
         icontype: 'dashboard'
     },{
-        path: '/components',
+        path: '/pages/attendance',
         title: 'Attendance',
         type: 'sub',
         icontype: 'apps',
-        collapse: 'components',
+        collapse: 'attendance',
         children: [
-            {path: 'buttons', title: 'Buttons', ab:'B'},
-            {path: 'grid', title: 'Grid System', ab:'GS'},
-            {path: 'panels', title: 'Panels', ab:'P'},
-            {path: 'sweet-alert', title: 'Sweet Alert', ab:'SA'},
-            {path: 'notifications', title: 'Notifications', ab:'N'},
-            {path: 'icons', title: 'Icons', ab:'I'},
-            {path: 'typography', title: 'Typography', ab:'T'}
+            {path: 'manage', title: 'Manage Attendance', ab:'MA'},
         ]
-    },{
-        path: '/forms',
-        title: 'Forms',
+     },{
+        path: '/pages/leave',
+        title: 'Leave',
         type: 'sub',
-        icontype: 'content_paste',
-        collapse: 'forms',
+        icontype: 'apps',
+        collapse: 'leave',
         children: [
-            {path: 'regular', title: 'Regular Forms', ab:'RF'},
-            {path: 'extended', title: 'Extended Forms', ab:'EF'},
-            {path: 'validation', title: 'Validation Forms', ab:'VF'},
-            {path: 'wizard', title: 'Wizard', ab:'W'}
+            {path: 'manage', title: 'Manage Leave', ab:'ML'},
         ]
-    },{
-        path: '/tables',
-        title: 'Tables',
-        type: 'sub',
-        icontype: 'grid_on',
-        collapse: 'tables',
-        children: [
-            {path: 'regular', title: 'Regular Tables', ab:'RT'},
-            {path: 'extended', title: 'Extended Tables', ab:'ET'},
-            {path: 'datatables.net', title: 'Datatables.net', ab:'DT'}
-        ]
-    },{
-        path: '/maps',
-        title: 'Maps',
-        type: 'sub',
-        icontype: 'place',
-        collapse: 'maps',
-        children: [
-            {path: 'google', title: 'Google Maps', ab:'GM'},
-            {path: 'fullscreen', title: 'Full Screen Map', ab:'FSM'},
-            {path: 'vector', title: 'Vector Map', ab:'VM'}
-        ]
-    },{
-        path: '/widgets',
-        title: 'Widgets',
-        type: 'link',
-        icontype: 'widgets'
+     }
+     //{
+    //     path: '/forms',
+    //     title: 'Forms',
+    //     type: 'sub',
+    //     icontype: 'content_paste',
+    //     collapse: 'forms',
+    //     children: [
+    //         {path: 'regular', title: 'Regular Forms', ab:'RF'},
+    //         {path: 'extended', title: 'Extended Forms', ab:'EF'},
+    //         {path: 'validation', title: 'Validation Forms', ab:'VF'},
+    //         {path: 'wizard', title: 'Wizard', ab:'W'}
+    //     ]
+    // },{
+    //     path: '/tables',
+    //     title: 'Tables',
+    //     type: 'sub',
+    //     icontype: 'grid_on',
+    //     collapse: 'tables',
+    //     children: [
+    //         {path: 'regular', title: 'Regular Tables', ab:'RT'},
+    //         {path: 'extended', title: 'Extended Tables', ab:'ET'},
+    //         {path: 'datatables.net', title: 'Datatables.net', ab:'DT'}
+    //     ]
+    // },{
+    //     path: '/maps',
+    //     title: 'Maps',
+    //     type: 'sub',
+    //     icontype: 'place',
+    //     collapse: 'maps',
+    //     children: [
+    //         {path: 'google', title: 'Google Maps', ab:'GM'},
+    //         {path: 'fullscreen', title: 'Full Screen Map', ab:'FSM'},
+    //         {path: 'vector', title: 'Vector Map', ab:'VM'}
+    //     ]
+    // },{
+    //     path: '/widgets',
+    //     title: 'Widgets',
+    //     type: 'link',
+    //     icontype: 'widgets'
 
-    },{
-        path: '/charts',
-        title: 'Charts',
-        type: 'link',
-        icontype: 'timeline'
+    // },{
+    //     path: '/charts',
+    //     title: 'Charts',
+    //     type: 'link',
+    //     icontype: 'timeline'
 
-    },{
-        path: '/calendar',
-        title: 'Calendar',
-        type: 'link',
-        icontype: 'date_range'
-    },{
-        path: '/pages',
-        title: 'Pages',
-        type: 'sub',
-        icontype: 'image',
-        collapse: 'pages',
-        children: [
-            {path: 'pricing', title: 'Pricing', ab:'P'},
-            {path: 'timeline', title: 'Timeline Page', ab:'TP'},
-            {path: 'login', title: 'Login Page', ab:'LP'},
-            {path: 'register', title: 'Register Page', ab:'RP'},
-            {path: 'lock', title: 'Lock Screen Page', ab:'LSP'},
-            {path: 'user', title: 'User Page', ab:'UP'}
-        ]
-    }
+    // },{
+    //     path: '/calendar',
+    //     title: 'Calendar',
+    //     type: 'link',
+    //     icontype: 'date_range'
+    // },{
+    //     path: '/pages',
+    //     title: 'Pages',
+    //     type: 'sub',
+    //     icontype: 'image',
+    //     collapse: 'pages',
+    //     children: [
+    //         {path: 'pricing', title: 'Pricing', ab:'P'},
+    //         {path: 'timeline', title: 'Timeline Page', ab:'TP'},
+    //         {path: 'login', title: 'Login Page', ab:'LP'},
+    //         {path: 'register', title: 'Register Page', ab:'RP'},
+    //         {path: 'lock', title: 'Lock Screen Page', ab:'LSP'},
+    //         {path: 'user', title: 'User Page', ab:'UP'}
+    //     ]
+    // }
 ];
+
 @Component({
     selector: 'app-sidebar-cmp',
     templateUrl: 'sidebar.component.html',
@@ -116,7 +122,13 @@ export const ROUTES: RouteInfo[] = [
 
 export class SidebarComponent implements OnInit {
     public menuItems: any[];
+    public userName: any;
 
+    constructor(
+        private authService: AuthService,
+    ){
+
+    }
     isMobileMenu() {
         if ($(window).width() > 991) {
             return false;
@@ -125,6 +137,8 @@ export class SidebarComponent implements OnInit {
     };
 
     ngOnInit() {
+        this.userName = this.authService.auth_email;
+        // console.log("here ==>" + this.authService.auth_password);
         this.menuItems = ROUTES.filter(menuItem => menuItem);
     }
     updatePS(): void  {

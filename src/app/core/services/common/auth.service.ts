@@ -11,7 +11,7 @@ import { Configuration } from './../../../app.constants';
 
 @Injectable()
 export class AuthService {
-
+  auth_password: string;
   auth_email: string;
   auth_token: string; 
   auth_role: string;
@@ -28,6 +28,7 @@ export class AuthService {
    }
   login(user) { 
      localStorage.setItem('currentUser', JSON.stringify(user));
+     this.auth_password = user.password;
      this.auth_email = user.username;
      this.auth_token = user.token;
      this.auth_role = user.role;
@@ -54,6 +55,7 @@ export class AuthService {
 
   getLoginUser() {
       this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+      this.auth_password = this.currentUser.password;
       this.auth_email = this.currentUser.username;
       this.auth_token = this.currentUser.token;
       this.auth_role = this.currentUser.role;
@@ -81,6 +83,7 @@ export class AuthService {
   logout(): void {
     //this.removeBodyClass();
     localStorage.removeItem('currentUser');
+    this.auth_password = '';
     this.auth_email = '';
     this.auth_token = '';
     this.auth_role = '';

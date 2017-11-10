@@ -3,6 +3,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/filter';
 import { DOCUMENT } from '@angular/platform-browser';
+
 declare var $: any;
 
 @Component({

@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
     private nativeElement: Node;
     private toggleButton: any;
     private sidebarVisible: boolean;
+    private userName: string;
 
     @ViewChild('app-navbar-cmp') button: any;
 
@@ -37,6 +38,8 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit() {
+        
+        this.userName = this.authService.auth_email;
         this.listTitles = ROUTES.filter(listTitle => listTitle);
 
         const navbar: HTMLElement = this.element.nativeElement;

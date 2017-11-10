@@ -82,26 +82,41 @@ export class LoginComponent implements OnInit {
                 loginID: this._UserLoginModel.loginID,
                 loginPassword: this._UserLoginModel.loginPassword
             }
-            console.log(postData);
             this.userloginService
                 .login(postData)
                 .subscribe(data =>{
-                    if (data) {
-                        console.log(data);
+                    if ((data.ResponseType == 0) && (data.JsonData != null)) {
+                        this.token = {
+                            username: this._UserLoginModel.loginID,
+                            password: this._UserLoginModel.loginPassword,
+                            token: 'ggfggththjyjyjgyhjukukkjhgrdgrdgfgfgtghtgsdfefe',
+                            role: 'A',
+                            _id: data.JsonData.id,
+                        };
+                        this.authService.login(this.token);
+                        this.form.reset();
+                        this.submitted = false;
+                        this._router.navigate(['/pages/dashboard']);            
+                    } else if(data.ResponseType == 1){
+                        this.showNotification('top', 'right', 'Oop !!! Username or password are not valid.', 'danger');
+                    } else {
+                        this.showNotification('top', 'right', 'Something Went Wrong. please try again', 'danger');
                     }
-            });
-
-            // let formRole = 'A';
-            // this.token = {
-            //   username: this._UserLoginModel.loginID,
-            //   token: 'ggfggththjyjyjgyhjukukkjhgrdgrdgfgfgtghtgsdfefe',
-            //   role: formRole,
-            //   _id: 'ghfhgfhyhjnuyfhrhfmyhmncb',
-            // };
-            // this.authService.login(this.token);
-            // this.form.reset();
-            // this.submitted = false;
-            // this._router.navigate(['/pages/dashboard']);
+                });
         }
     }
+
+    showNotification(from, align, msg, type) {
+        $.notify({
+          icon: "notifications",
+          message: msg
+        }, {
+            type: type,
+            timer: 3000,
+            placement: {
+              from: from,
+              align: align
+            }
+          });
+      }
 }

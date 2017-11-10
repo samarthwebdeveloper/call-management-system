@@ -33,7 +33,7 @@ export const PagesRoutes: Routes = [
         { path: '', redirectTo: 'dashboard', pathMatch: 'full', canActivate: [AuthGuard] },
         { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule', canActivate: [AuthGuard] },
         { path: 'attendance', loadChildren: './attendance/attendance.module#AttendanceModule', canActivate: [AuthGuard] },
-        
+        { path: 'leave', loadChildren: './leave/leave.module#LeaveModule', canActivate: [AuthGuard] },
       ]
     },
   ];

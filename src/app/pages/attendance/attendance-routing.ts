@@ -6,7 +6,7 @@ export const AttendanceRoutes: Routes = [
   {
     path: '', component: AttendanceComponent,
     children: [
-       { path: 'manage', loadChildren: './components/manage/manage.module#ManageModule' },
+       { path: 'manage', loadChildren: './components/manage-attendance/manage-attendance.module#ManageAttendanceModule' },
     ],
   },
 ];
