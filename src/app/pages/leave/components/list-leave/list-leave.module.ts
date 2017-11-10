@@ -6,8 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SelectModule } from 'ng2-select';
 import { MaterialModule } from '../../../../app.module';
 
-import { routing } from './manage-leave-routing';
-import { ManageLeaveComponent } from './manage-leave.component';
+import { routing } from './list-leave-routing';
+import { ListLeaveComponent } from './list-leave.component';
 
 import { LeaveService  }  from '../../../../core/services/leave/leave.service';
 
@@ -20,12 +20,12 @@ import { LeaveService  }  from '../../../../core/services/leave/leave.service';
     MaterialModule
   ],
   declarations: [
-    ManageLeaveComponent,
+    ListLeaveComponent,
   ],
   providers: [
     LeaveService
   ]
 })
-export class ManageLeaveModule {}
+export class ListLeaveModule {}
 
 

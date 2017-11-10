@@ -26,14 +26,18 @@
                           <div class="content form-horizontal">
                             <div class="row">
                               <div class="col-md-6 col-sm-6">
-                                  <button class="btn btn-social btn-fill btn-twitter">
+                                  <button 
+                                    class="btn btn-social btn-fill btn-twitter" 
+                                    *ngIf="checkInVisibility"
+                                    (click)="Save('checkin')">
                                       <i class="fa fa-dribbble"></i> Check In
                                   </button>
-                              </div>
-                              <div class="col-md-6 col-sm-6">
-                                <button class="btn btn-social btn-fill btn-youtube">
-                                  <i class="fa fa-reddit"></i> Check Out
-                                </button>
+                                  <button 
+                                    class="btn btn-social btn-fill btn-youtube" 
+                                    *ngIf="checkOutVisibility"
+                                    (click)="Save('checkout')">
+                                    <i class="fa fa-reddit"></i> Check Out
+                                  </button>
                               </div>
                           </div>
                         </div>

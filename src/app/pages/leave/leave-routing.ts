@@ -7,6 +7,8 @@ export const LeaveRoutes: Routes = [
     path: '', component: LeaveComponent,
     children: [
        { path: 'manage', loadChildren: './components/manage-leave/manage-leave.module#ManageLeaveModule' },
+       { path: 'lists', loadChildren: './components/list-leave/list-leave.module#ListLeaveModule' },
+       
     ],
   },
 ];

@@ -36,6 +36,7 @@ export const ROUTES: RouteInfo[] = [
         collapse: 'attendance',
         children: [
             {path: 'manage', title: 'Manage Attendance', ab:'MA'},
+            {path: 'lists', title: 'Lists Attendance', ab:'LA'},
         ]
      },{
         path: '/pages/leave',
@@ -45,6 +46,7 @@ export const ROUTES: RouteInfo[] = [
         collapse: 'leave',
         children: [
             {path: 'manage', title: 'Manage Leave', ab:'ML'},
+            {path: 'lists', title: 'Lists Leaves', ab:'LL'},
         ]
      }
      //{

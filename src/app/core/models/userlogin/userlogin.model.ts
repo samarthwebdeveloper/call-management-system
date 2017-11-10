@@ -1,5 +1,5 @@
 export class UserLoginModel {
-    id: string;
+    id: number;
     loginID: string;
     loginPassword: string;
 }

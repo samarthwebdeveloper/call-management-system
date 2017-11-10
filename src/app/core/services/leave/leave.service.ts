@@ -10,17 +10,21 @@ import { Configuration } from './../../../app.constants';
 @Injectable()
 export class LeaveService {
 
+    headers: any;
+    options: any;
+    
     constructor(
         private http: Http, 
         private configuration: Configuration
     ) {
-        
+        this.headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' });
+        this.options = new RequestOptions( {method: RequestMethod.Post, headers: this.headers }); 
     }
     
-    public GetAll = (): Observable<any> => {
-        return this.http
-            .get(this.configuration.actionUrl + 'LeaveLog')
-            .map(res => <any>res.json());
+    public GetAll = (data: any): Observable<any> => {
+        let body = this.serializeObj(data);
+        return this.http.post(this.configuration.Server + 'LeaveLog/GetList',  body, this.options)
+               .map(res => <any>res.json());
     }
 
     public GetById = (id: string): Observable<any> => {
@@ -29,10 +33,10 @@ export class LeaveService {
            .map(res => <any>res.json());
     }
 
-    public Add = (data: any): Observable<any> => {
-        const toAdd = this.serializeObj(data);
-        return this.http.post(this.configuration.actionUrl + 'LeaveLog', toAdd, this.configuration.options)
-           .map(res => <any>res.json());
+    public Save = (data: any): Observable<any> => {
+        let body = this.serializeObj(data);
+        return this.http.post(this.configuration.Server + 'LeaveLog/Save',  body, this.options)
+               .map(res => <any>res.json());
     }
 
     public Update = (id: string, data: any): Observable<any> => {
@@ -53,5 +57,6 @@ export class LeaveService {
             result.push(encodeURIComponent(property) + "=" + encodeURIComponent(obj[property]));
         return result.join("&");
     }
+
 
 }

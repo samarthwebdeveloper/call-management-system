@@ -16,7 +16,7 @@ export class AuthService {
   auth_token: string; 
   auth_role: string;
   auth_roletype: string;
-  auth_id: string;
+  auth_id: number;
   auth_user: any;
 //   customer_servicer_id : string;
 //   customer_servicer_urlname : string;
@@ -61,7 +61,7 @@ export class AuthService {
       this.auth_role = this.currentUser.role;
       this.auth_roletype = this.currentUser.roletype;
       
-      this.auth_id = this.currentUser._id;
+      this.auth_id = parseInt(this.currentUser._id);
       this.auth_user = this.currentUser.user;
       if(!this.configuration.headers.has('authtoken')) {
         this.configuration.headers.delete('authtoken');
@@ -87,7 +87,7 @@ export class AuthService {
     this.auth_email = '';
     this.auth_token = '';
     this.auth_role = '';
-    this.auth_id = '';
+    this.auth_id = 0;
     this.auth_user = '';
     // this.customer_servicer_id = '';
     // this.customer_servicer_urlname = '';

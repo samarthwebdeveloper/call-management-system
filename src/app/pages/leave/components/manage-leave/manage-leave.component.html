@@ -14,62 +14,112 @@
               </div>
           </div>
       </div>
-      <div id="general">
-          <div class="row">
-              <div class="col-md-12">
-                  <div class="card">
-                      <div class="card-header card-header-icon" data-background-color="rose">
-                          <i class="material-icons">card_membership</i>
-                      </div>
-                      <div class="card-content">
-                          <h4 class="card-title">Leave Managment</h4>
-                          <div class="content form-horizontal">
-                            <div class="row">
-                              <div class="col-md-6">
-                                <div class="row">
-                                  <label class="col-md-5 label-on-left">From:  <span class="star">*</span></label>
-                                  <div class="col-md-7">
-                                    <div class="form-group label-floating is-empty">
-                                      <label class="control-label"></label>
-                                      <input type="text" class="form-control">
+        <div id="general">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header card-header-icon" data-background-color="rose">
+                            <i class="material-icons">card_membership</i>
+                        </div>
+                        <form
+                            [formGroup]="form" 
+                            (ngSubmit)="onSubmit(form.value,form.valid)" 
+                            novalidate >
+                            <div class="card-content">
+                                <h4 class="card-title">Leave Managment</h4>
+                                <div class="content form-horizontal">
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                        <input type="hidden" [(ngModel)]="_leaveModel.employeeID" formControlName="employeeID">
+                                        <label class="col-md-5 label-on-left">From:  <span class="star">*</span></label>
+                                        <div class="col-md-7">
+                                            <div class="form-group label-floating is-empty">
+                                            <label class="control-label"></label>
+                                                <mat-datepicker-toggle matSuffix [for]="FromPicker">
+                                                </mat-datepicker-toggle>
+                                                <mat-input-container>
+                                                    <input 
+                                                        matInput
+                                                        [matDatepicker]="FromPicker"
+                                                        [(ngModel)]="_leaveModel.leaveFrom"
+                                                        formControlName="leaveFrom"
+                                                        placeholder="Pick a day">
+                                                </mat-input-container>
+                                                <mat-datepicker
+                                                    #FromPicker
+                                                    [touchUi]="touch"
+                                                    [startView]="'month'">
+                                                </mat-datepicker>
+                                                <span 
+                                                    class="errormsg text-danger" 
+                                                    [hidden]="!form.get('leaveFrom').hasError('required') || (form.get('leaveFrom').pristine && !isSubmitted)">
+                                                    Leave From is Required
+                                                </span>
+                                            </div>
+                                        </div>
+                                        </div>
                                     </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-md-6">
-                                <div class="row">
-                                  <label class="col-md-5 label-on-left">To: <span class="star">*</span></label>
-                                  <div class="col-md-7">
-                                    <div class="form-group label-floating is-empty">
-                                      <label class="control-label"></label>
-                                      <input type="email" class="form-control">
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                        <label class="col-md-5 label-on-left">To: <span class="star">*</span></label>
+                                        <div class="col-md-7">
+                                            <div class="form-group label-floating is-empty">
+                                            <label class="control-label"></label>
+                                                <mat-datepicker-toggle matSuffix [for]="ToPicker">
+                                                </mat-datepicker-toggle>
+                                                <mat-input-container>
+                                                    <input matInput
+                                                        [matDatepicker]="ToPicker"
+                                                        [(ngModel)]="_leaveModel.leaveTo"
+                                                        formControlName="leaveTo"
+                                                        placeholder="Pick a day">
+                                                </mat-input-container>
+                                                <mat-datepicker
+                                                    #ToPicker
+                                                    [touchUi]="touch"
+                                                    [startView]="'month'">
+                                                </mat-datepicker>
+                                                <span 
+                                                    class="errormsg text-danger" 
+                                                    [hidden]="!form.get('leaveTo').hasError('required') || (form.get('leaveTo').pristine && !isSubmitted)">
+                                                    Leave To is Required
+                                                </span>
+                                            </div>
+                                        </div>
+                                        </div>
                                     </div>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                                <label class="col-sm-2 label-on-left">Reason: <span class="star">*</span></label>
-                                <div class="col-sm-10">
-                                    <div class="form-group label-floating is-empty">
-                                        <label class="control-label"></label>
-                                        <input type="text" class="form-control" value>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-sm-2 label-on-left">Reason: <span class="star">*</span></label>
+                                        <div class="col-sm-10">
+                                            <div class="form-group label-floating is-empty">
+                                                <label class="control-label"></label>
+                                                <input 
+                                                    type="text" 
+                                                    [(ngModel)]="_leaveModel.narration"
+                                                    formControlName="narration"
+                                                    class="form-control">
+                                                    <span 
+                                                        class="errormsg text-danger" 
+                                                        [hidden]="!form.get('narration').hasError('required') || (form.get('narration').pristine && !isSubmitted)">
+                                                        Narration is Required
+                                                    </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                    <div class="col-md-12 text-right">
+                                        <button class="btn btn-default"><i class="material-icons">close</i> Cancel</button>
+                                        <button type="submit" class="btn btn-rose pull-right"><i class="material-icons">save</i> Save Changes</button>
+                                    </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                              <div class="col-md-12 text-right">
-                                <button class="btn btn-default"><i class="material-icons">close</i> Cancel</button>
-                                <button type="submit" class="btn btn-rose pull-right"><i class="material-icons">save</i> Save Changes</button>
-                              </div>
-                            </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      
-      
-  </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
