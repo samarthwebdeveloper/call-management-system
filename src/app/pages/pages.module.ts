@@ -9,8 +9,6 @@ import { PagesComponent } from './pages.component';
 import { PagesRoutes } from './pages.routing';
 
 import { RegisterComponent } from './register/register.component';
-import { PricingComponent } from '../theme/pricing/pricing.component';
-import { LockComponent } from '../theme/lock/lock.component';
 import { LoginComponent } from './login/login.component';
 
 import { SidebarModule } from '../sidebar/sidebar.module';
@@ -32,8 +30,6 @@ import { AuthService } from '../core/services/common/auth.service';
     PagesComponent,
     LoginComponent,
     RegisterComponent,
-    PricingComponent,
-    LockComponent
   ]
 })
 

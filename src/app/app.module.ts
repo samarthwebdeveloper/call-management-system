@@ -49,8 +49,6 @@ import { PagesModule } from './pages/pages.module';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { FooterModule } from './shared/footer/footer.module';
 import { NavbarModule} from './shared/navbar/navbar.module';
-import { AdminLayoutComponent } from './theme/layouts/admin/admin-layout.component';
-import { AuthLayoutComponent } from './theme/layouts/auth/auth-layout.component';
 
 import { CoreModule } from './core/core.module';
 import { Configuration } from './app.constants';
@@ -114,8 +112,6 @@ export class MaterialModule {}
     ],
     declarations: [
         AppComponent,
-        AdminLayoutComponent,
-        AuthLayoutComponent
     ],
     providers: [
       AuthService,
